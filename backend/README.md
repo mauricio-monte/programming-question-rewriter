@@ -4,7 +4,7 @@
 
 - Poetry v1.6+
 - Make
-  - Windows - [this StackOverFlow answer can help](https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows)
+  - Windows - [esta resposta do StackOverFlow pode ajudar](https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows)
   - Se não quiser instalar o make, basta rodar os mesmos comandos que estão no arquivo `Makefile` manualmente
     - `poetry install` para instalar as dependências
     - `poetry run uvicorn app.server:app --reload` para executar o servidor
