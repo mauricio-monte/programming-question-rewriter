@@ -3,18 +3,18 @@ from pprint import pprint
 
 import openai
 
-from app.config import Settings
+from app.config import MODEL_NAME
 from app.prompter import get_prompt
 from app.schemas import GenerateQuestionsParams
 
 
-def get_model_response(settings: Settings, params: GenerateQuestionsParams) -> str:
+def get_model_response(params: GenerateQuestionsParams) -> str:
     openai.api_key = params.open_ai_key
     prompt = get_prompt(params)
 
     messages = [{"role": "user", "content": prompt}]
     response = openai.ChatCompletion.create(
-        model=settings.model_name,
+        model=MODEL_NAME,
         messages=messages,
         temperature=0,  # this is the degree of randomness of the model's output
     )
@@ -24,6 +24,6 @@ def get_model_response(settings: Settings, params: GenerateQuestionsParams) -> s
     return response.choices[0].message["content"]  # type: ignore
 
 
-def get_generated_questions(settings: Settings, params: GenerateQuestionsParams) -> str:
-    response = get_model_response(settings, params)
+def get_generated_questions(params: GenerateQuestionsParams) -> str:
+    response = get_model_response(params)
     return response
