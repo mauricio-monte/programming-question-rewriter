@@ -1,11 +1,12 @@
 import json
 from pprint import pprint
+from typing import List
 
 import openai
 
 from app.config import MODEL_NAME
 from app.prompter import get_prompt
-from app.schemas import GenerateQuestionsParams
+from app.schemas import GeneratedQuestionsResponse, GenerateQuestionsParams
 
 
 def get_model_response(params: GenerateQuestionsParams) -> str:
@@ -24,6 +25,14 @@ def get_model_response(params: GenerateQuestionsParams) -> str:
     return response.choices[0].message["content"]  # type: ignore
 
 
-def get_generated_questions(params: GenerateQuestionsParams) -> str:
+def normalize_model_response(response: str) -> GeneratedQuestionsResponse:
+    generated_questions = response.split("\n")
+    return GeneratedQuestionsResponse(generated_questions=generated_questions)
+
+
+def get_generated_questions(
+    params: GenerateQuestionsParams,
+) -> GeneratedQuestionsResponse:
     response = get_model_response(params)
+    response = normalize_model_response(response)
     return response
