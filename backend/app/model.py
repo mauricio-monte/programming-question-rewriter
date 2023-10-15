@@ -1,3 +1,6 @@
+import json
+from pprint import pprint
+
 import openai
 
 from app.config import Settings
@@ -15,6 +18,9 @@ def get_model_response(settings: Settings, params: GenerateQuestionsParams) -> s
         messages=messages,
         temperature=0,  # this is the degree of randomness of the model's output
     )
+
+    pprint(json.dumps(response, indent=4))
+
     return response.choices[0].message["content"]  # type: ignore
 
 
