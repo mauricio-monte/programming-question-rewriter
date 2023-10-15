@@ -1,2 +1,5 @@
+install:
+	poetry install
+
 start:
-	poetry run uvicorn server:app --reload
+	poetry run uvicorn app.server:app --reload
