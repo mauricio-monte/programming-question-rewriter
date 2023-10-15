@@ -2,20 +2,19 @@ from typing import Annotated
 
 from fastapi import Depends, FastAPI
 
+from app import model
 from app.config import Settings
 from app.deps import get_settings
-from app.schemas import GenerateQuestions
+from app.schemas import GenerateQuestionsParams
 
 app = FastAPI()
 
 
 @app.post("/questions")
 def read_root(
-    generate_questions_params: GenerateQuestions,
+    params: GenerateQuestionsParams,
     settings: Annotated[Settings, Depends(get_settings)],
 ):
-    return {
-        "message": settings.open_ai_key,
-        "original": generate_questions_params.original_text,
-        "number_of_questions": generate_questions_params.number_of_questions,
-    }
+    generated_questions = model.get_generated_questions(settings, params)
+
+    return {"message": generated_questions}

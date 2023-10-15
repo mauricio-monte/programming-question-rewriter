@@ -11,6 +11,7 @@ fastapi = "^0.103.2"
 uvicorn = {extras = ["standard"], version = "^0.23.2"}
 python-dotenv = "^1.0.0"
 pydantic-settings = "^2.0.3"
+openai = "^0.28.1"
 
 
 [build-system]
