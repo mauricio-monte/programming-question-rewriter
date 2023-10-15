@@ -1,6 +1,6 @@
 import openai
 
-from app.config import MODEL_NAME
+from app.config import MODEL_NAME, MODEL_TEMPERATURE
 from app.prompter import get_prompt
 from app.schemas import GeneratedQuestionsResponse, GenerateQuestionsParams
 
@@ -13,7 +13,7 @@ def get_model_response(params: GenerateQuestionsParams) -> str:
     response = openai.ChatCompletion.create(
         model=MODEL_NAME,
         messages=messages,
-        temperature=0,
+        temperature=MODEL_TEMPERATURE,
     )
 
     return response.choices[0].message["content"]  # type: ignore
