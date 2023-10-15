@@ -11,7 +11,7 @@ app = FastAPI()
 
 
 @app.post("/questions")
-def read_root(
+def generate_questions(
     params: GenerateQuestionsParams,
     settings: Annotated[Settings, Depends(get_settings)],
 ):
