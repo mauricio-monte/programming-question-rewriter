@@ -6,7 +6,7 @@ from app.schemas import GenerateQuestionsParams
 
 
 def get_model_response(settings: Settings, params: GenerateQuestionsParams) -> str:
-    openai.api_key = settings.open_ai_key
+    openai.api_key = params.open_ai_key
     prompt = get_prompt(params)
 
     messages = [{"role": "user", "content": prompt}]
