@@ -1,7 +1,3 @@
-import json
-from pprint import pprint
-from typing import List
-
 import openai
 
 from app.config import MODEL_NAME
@@ -17,10 +13,8 @@ def get_model_response(params: GenerateQuestionsParams) -> str:
     response = openai.ChatCompletion.create(
         model=MODEL_NAME,
         messages=messages,
-        temperature=0,  # this is the degree of randomness of the model's output
+        temperature=0,
     )
-
-    pprint(json.dumps(response, indent=4))
 
     return response.choices[0].message["content"]  # type: ignore
 
