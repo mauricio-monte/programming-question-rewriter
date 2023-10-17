@@ -3,19 +3,30 @@ from app.schemas import GenerateQuestionsParams
 
 def get_prompt(params: GenerateQuestionsParams):
     PROMPT = f"""
-        You should give {params.number_of_questions} random versions of the
-        following text delimited by the char $, this is the text: ${params.original_text}$
+        Your task is generate alternatives versions of the original programming question delimited by triple backticks.
+        To solve your task, do the following: 
+        1 - Work out your own solution to the original programming question using Python.
+        2 - Then, generate {params.number_of_questions} alternatives programming questions that can be solved by your solution. Don't generate an alternative version until you have your own solution.
 
-        Remove the delimiter char $ from the generated text.
-        You can change the words and the context of the provided text.
+        Original programming question:
+        ```{params.original_text}```
 
-        I want the output to be in the following format:
-        generated_text1
-        generated_text2
-        generated_text3
+        For the output format, delimiter char and separate the generated versions by six equal signs in the following format:
+        
+        Solution:
+        <your solution to the original question>
+        
+        ======
+        <generated question 1>
+    
+        ======
+        <generated question 2>
+        
+        ======
         ...
-        generated_textn
-
-        So you only should give me {params.number_of_questions} lines of generated text.
+        
+        ======
+        <generated question N>
+    
     """
     return PROMPT

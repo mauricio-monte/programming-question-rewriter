@@ -20,7 +20,7 @@ def _get_model_response(params: GenerateQuestionsParams) -> str:
 
 
 def _normalize_model_response(response: str) -> GeneratedQuestionsResponse:
-    generated_questions = response.split("\n")
+    generated_questions = response.split("======")
     return GeneratedQuestionsResponse(generated_questions=generated_questions)
 
 
