@@ -12,8 +12,6 @@ def get_prompt(params: GenerateQuestionsParams):
         You should pay attention to:
         1. Keep the input and output titles on the question text
         2. Keep the same input and output examples
-        3. Dont say to me the order on which question you will say, 
-            I will know by the order you will say them
 
         To solve your task, change the following, if it makes sense:
         1. all the characters, names, type of beings, places, et.
@@ -25,8 +23,8 @@ def get_prompt(params: GenerateQuestionsParams):
         Original programming question:
         ```{params.original_text}```
 
-        Don't add nothing more to your output, I just want the text from the new generated questions.
-        Separated by six equal signs in the following format:
+        DO NOT add nothing more to your output, I just want the text from the new generated questions.
+        Separated by SIX equal signs in the following format, like "======":
 
         <text from generated question 1>
         ======
@@ -35,6 +33,12 @@ def get_prompt(params: GenerateQuestionsParams):
         ...
         ======
         <text from generated question N>
+
+        Example:
+        
+        This is my generated question number 1, the ideia here is...
+        ======
+        This is my generated question number 2, the ideia here is...
 
     """
     return PROMPT
