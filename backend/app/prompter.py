@@ -19,8 +19,8 @@ def get_prompt(params: GenerateQuestionsParams):
         Original programming question:
         ```{params.original_text}```
 
-        For the output format, don't add nothing more to your output, just
-        separate the generated versions by six equal signs in the following format:
+        Don't add nothing more to your output, I just want the text from the new generated questions.
+        Separated by six equal signs in the following format:
 
         <text from generated question 1>
         ======
