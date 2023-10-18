@@ -1,7 +1,6 @@
 import QuestionSubmissionForm from "./components/QuestionSubmissionForm";
 import QuestionVariationsDisplay from "./components/QuestionVariationsDisplay";
 import { QuestionsVariationsProvider } from "./context/QuestionsVariationsContext";
-import logoPNG from "../assets/logo.png";
 
 function App() {
   return (
@@ -9,7 +8,7 @@ function App() {
       <header className="flex flex-col justify-center items-center">
         <img
           className="w-[100px]"
-          src={logoPNG}
+          src="/logo.png"
           alt="Programming Question Rewriter Logo"
         />
 
