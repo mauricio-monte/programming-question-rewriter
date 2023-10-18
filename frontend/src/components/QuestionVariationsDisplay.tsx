@@ -34,9 +34,12 @@ function QuestionVariationsDisplay() {
           );
         })}
       </div>
-      <div className="bg-white w-full h-[400px] overflow-y-auto rounded-lg p-3">
-        {selectedQuestion}
-      </div>
+      <div
+        className="bg-white w-full h-[400px] overflow-y-auto rounded-lg p-3"
+        dangerouslySetInnerHTML={{
+          __html: selectedQuestion,
+        }}
+      />
     </div>
   );
 }
