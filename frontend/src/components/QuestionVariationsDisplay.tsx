@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import QuestionsVariationsContext from "../context/QuestionsVariationsContext";
+import { GENERATED_QUESTIONS_MOCK } from "../mock/generatedQuestions";
 
 function QuestionVariationsDisplay() {
   const { questionsVariations } = useContext(QuestionsVariationsContext);
@@ -8,7 +9,7 @@ function QuestionVariationsDisplay() {
     questionsVariations[0]
   );
   console.log({ selectedQuestion });
-  const thereIsAnyQuestionVariation = questionsVariations.length > 0;
+  const thereIsAnyQuestionVariation = GENERATED_QUESTIONS_MOCK.length > 0;
 
   if (!thereIsAnyQuestionVariation) {
     return <div></div>;
@@ -19,10 +20,10 @@ function QuestionVariationsDisplay() {
       <h2>Versões Geradas</h2>
 
       <div className="bg-[#CFC9C7] w-full flex justify-evenly">
-        {questionsVariations.map((_, i) => {
+        {GENERATED_QUESTIONS_MOCK.map((_, i) => {
           return (
             <button
-              onClick={() => setSelectedQuestion(questionsVariations[i])}
+              onClick={() => setSelectedQuestion(GENERATED_QUESTIONS_MOCK[i])}
               className={`hover:bg-[#bab5b3] w-full ${
                 i !== 0 && "border-l border-black"
               }`}
