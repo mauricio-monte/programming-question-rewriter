@@ -1,7 +1,7 @@
 import QuestionSubmissionForm from "./components/QuestionSubmissionForm";
 import QuestionVariationsDisplay from "./components/QuestionVariationsDisplay";
 import { QuestionsVariationsProvider } from "./context/QuestionsVariationsContext";
-import logoPNG from "./assets/logo.png";
+import logoPNG from "../assets/logo.png";
 
 function App() {
   return (
