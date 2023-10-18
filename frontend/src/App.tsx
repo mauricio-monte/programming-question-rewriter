@@ -4,7 +4,7 @@ import { QuestionsVariationsProvider } from "./context/QuestionsVariationsContex
 
 function App() {
   return (
-    <div className="mx-10">
+    <div className="flex flex-col items-center min-w-full min-h-screen">
       <h1 className="text-center text-2xl">Programming Question Rewriter</h1>
       <QuestionsVariationsProvider>
         <QuestionSubmissionForm></QuestionSubmissionForm>

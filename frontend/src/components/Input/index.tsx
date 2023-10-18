@@ -12,9 +12,9 @@ interface InputProps {
 
 function Input({ className, label, ...props }: InputProps) {
   return (
-    <label className={`flex gap-3 ${className}`}>
+    <label className={`flex flex-col flex-1 gap-2 ${className}`}>
       {label}
-      <input {...props}></input>
+      <input className="p-3 rounded-lg" {...props}></input>
     </label>
   );
 }
