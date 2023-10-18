@@ -24,7 +24,7 @@ function QuestionSubmissionForm() {
     <div className="flex flex-col gap-8 w-[600px]">
       <div className="flex gap-5">
         <Input
-          label="Chave da OpenAI"
+          label="🔑 Chave da OpenAI"
           placeholder="******"
           name="openAIKey"
           value={state.openAIKey}
@@ -33,7 +33,7 @@ function QuestionSubmissionForm() {
         />
 
         <Input
-          label="Quantidade de variações"
+          label="🔢 Quantidade de variações"
           placeholder="1"
           name="numberOfVariations"
           value={state.numberOfVariations}
@@ -45,7 +45,7 @@ function QuestionSubmissionForm() {
       </div>
 
       <label className="flex flex-col gap-2">
-        Enunciado da questão original
+        👀 Enunciado da questão original
         <textarea
           value={state.originalQuestion}
           name="originalQuestion"
@@ -63,7 +63,7 @@ function QuestionSubmissionForm() {
           !isLoading && fetchQuestionVariations(state);
         }}
       >
-        {isLoading ? <LoadingAnimation></LoadingAnimation> : "Enviar"}
+        {isLoading ? <LoadingAnimation></LoadingAnimation> : "Enviar 📤"}
       </button>
     </div>
   );
