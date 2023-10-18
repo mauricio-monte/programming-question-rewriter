@@ -20,6 +20,12 @@ def _get_model_response(params: GenerateQuestionsParams) -> str:
 
 def _normalize_model_response(response: str) -> GeneratedQuestionsResponse:
     generated_questions = response.split(GENERATED_QUESTION_DELIMITER)
+
+    def change_new_lines(question: str) -> str:
+        return question.strip().replace("\n", "<br>")
+
+    generated_questions = list(map(change_new_lines, generated_questions))
+
     return GeneratedQuestionsResponse(generated_questions=generated_questions)
 
 

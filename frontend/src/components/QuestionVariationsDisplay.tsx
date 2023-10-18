@@ -7,7 +7,7 @@ function QuestionVariationsDisplay() {
   const [selectedQuestion, setSelectedQuestion] = useState(
     questionsVariations[0]
   );
-  console.log({ selectedQuestion });
+
   const thereIsAnyQuestionVariation = questionsVariations.length > 0;
 
   if (!thereIsAnyQuestionVariation) {
@@ -15,17 +15,18 @@ function QuestionVariationsDisplay() {
   }
 
   return (
-    <div className="flex flex-col items-center min-h-fit">
-      <h2>Versões Geradas</h2>
+    <div className="flex flex-col items-center gap-8 w-[600px] pb-20">
+      <h2 className="text-center text-2xl">Versões Geradas 🥇</h2>
 
-      <div className="bg-[#CFC9C7] w-full flex justify-evenly">
-        {questionsVariations.map((_, i) => {
+      <div className="w-full flex justify-evenly gap-3">
+        {questionsVariations.map((question, i) => {
           return (
             <button
               onClick={() => setSelectedQuestion(questionsVariations[i])}
-              className={`hover:bg-[#bab5b3] w-full ${
-                i !== 0 && "border-l border-black"
-              }`}
+              className={`hover:bg-[#3f83cb] bg-[#1C5694] text-white py-2 w-full ${
+                question === selectedQuestion &&
+                "bg-[#3f83cb] border border-[#9abfe5]"
+              } rounded-lg`}
               key={i}
             >
               Variação {i + 1}
@@ -33,9 +34,12 @@ function QuestionVariationsDisplay() {
           );
         })}
       </div>
-      <div className="bg-white w-full h-40 overflow-y-auto border border-gray-400 rounded-sm">
-        {selectedQuestion}
-      </div>
+      <div
+        className="bg-white w-full h-[400px] overflow-y-auto rounded-lg p-3"
+        dangerouslySetInnerHTML={{
+          __html: selectedQuestion,
+        }}
+      />
     </div>
   );
 }
