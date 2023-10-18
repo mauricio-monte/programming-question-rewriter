@@ -1,6 +1,5 @@
 import openai
-
-from app.config import MODEL_NAME, MODEL_TEMPERATURE
+from app.config import GENERATED_QUESTION_DELIMITER, MODEL_NAME, MODEL_TEMPERATURE
 from app.prompter import get_prompt
 from app.schemas import GeneratedQuestionsResponse, GenerateQuestionsParams
 
@@ -20,7 +19,7 @@ def _get_model_response(params: GenerateQuestionsParams) -> str:
 
 
 def _normalize_model_response(response: str) -> GeneratedQuestionsResponse:
-    generated_questions = response.split("\n")
+    generated_questions = response.split(GENERATED_QUESTION_DELIMITER)
     return GeneratedQuestionsResponse(generated_questions=generated_questions)
 
 
@@ -28,5 +27,6 @@ def get_generated_questions(
     params: GenerateQuestionsParams,
 ) -> GeneratedQuestionsResponse:
     response = _get_model_response(params)
+    print(response)
     response = _normalize_model_response(response)
     return response
