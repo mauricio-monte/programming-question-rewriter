@@ -14,14 +14,6 @@ export const formReducer = (
         ...state,
         [action.payload.inputName]: action.payload.value,
       };
-    case "INCREASE":
-      return {
-        ...state,
-      };
-    case "DECREASE":
-      return {
-        ...state,
-      };
     default:
       return state;
   }
