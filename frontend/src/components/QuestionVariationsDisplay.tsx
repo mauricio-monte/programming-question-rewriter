@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface QuestionVariationsDisplayProps {
   questionsVariations: string[];
@@ -10,6 +10,12 @@ function QuestionVariationsDisplay({
   const [selectedQuestion, setSelectedQuestion] = useState(
     questionsVariations[0]
   );
+
+  const questionVariationTextRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    questionVariationTextRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, []);
 
   const thereIsAnyQuestionVariation = questionsVariations.length > 0;
 
@@ -38,6 +44,7 @@ function QuestionVariationsDisplay({
         })}
       </div>
       <div
+        ref={questionVariationTextRef}
         className="bg-white w-full h-[400px] overflow-y-auto rounded-lg p-3"
         dangerouslySetInnerHTML={{
           __html: selectedQuestion,
