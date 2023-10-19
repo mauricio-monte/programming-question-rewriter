@@ -1,8 +1,11 @@
 import QuestionSubmissionForm from "./components/QuestionSubmissionForm";
 import QuestionVariationsDisplay from "./components/QuestionVariationsDisplay";
-import { QuestionsVariationsProvider } from "./context/QuestionsVariationsContext";
+import useFetchQuestionVariations from "./hooks/useFetchQuestionVariations";
 
 function App() {
+  const { questionsVariations, fetchQuestionVariations, isLoading } =
+    useFetchQuestionVariations();
+
   return (
     <div className="flex flex-col items-center min-w-full min-h-screen gap-16 pt-10">
       <header className="flex flex-col justify-center items-center">
@@ -15,10 +18,14 @@ function App() {
         <h1 className="text-center text-2xl">Programming Question Rewriter</h1>
       </header>
 
-      <QuestionsVariationsProvider>
-        <QuestionSubmissionForm></QuestionSubmissionForm>
-        <QuestionVariationsDisplay></QuestionVariationsDisplay>
-      </QuestionsVariationsProvider>
+      <QuestionSubmissionForm
+        onSubmit={fetchQuestionVariations}
+        isLoading={isLoading}
+      ></QuestionSubmissionForm>
+      <QuestionVariationsDisplay
+        key={crypto.randomUUID()}
+        questionsVariations={questionsVariations}
+      ></QuestionVariationsDisplay>
     </div>
   );
 }

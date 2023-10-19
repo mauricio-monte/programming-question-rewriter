@@ -1,11 +1,11 @@
-export interface QuestionSubmissionForm {
+export interface QuestionSubmission {
   openAIKey: string;
   originalQuestion: string;
   numberOfVariations: number;
 }
 
 export const formReducer = (
-  state: QuestionSubmissionForm,
+  state: QuestionSubmission,
   action: { type: string; payload: { inputName: string; value: string } }
 ) => {
   switch (action.type) {

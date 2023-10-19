@@ -1,12 +1,18 @@
 import { FormEvent, useReducer } from "react";
-import useQuestionSubmit from "./useQuestionSubmit";
-import { INITIAL_STATE, formReducer } from "./formReducer";
+import { INITIAL_STATE, QuestionSubmission, formReducer } from "./formReducer";
 import LoadingAnimation from "./LoadingAnimation";
 import Input from "../Input";
 
-function QuestionSubmissionForm() {
+interface QuestionSubmissionFormProps {
+  onSubmit: (formData: QuestionSubmission) => void;
+  isLoading: boolean;
+}
+
+function QuestionSubmissionForm({
+  onSubmit,
+  isLoading,
+}: QuestionSubmissionFormProps) {
   const [state, dispatch] = useReducer(formReducer, INITIAL_STATE);
-  const { fetchQuestionVariations, isLoading } = useQuestionSubmit();
 
   const handleChange = (
     e: FormEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -60,7 +66,7 @@ function QuestionSubmissionForm() {
         className="self-end bg-[#044389] hover:bg-[#1d5695] p-3 rounded-md text-white"
         type="submit"
         onClick={() => {
-          !isLoading && fetchQuestionVariations(state);
+          !isLoading && onSubmit(state);
         }}
       >
         {isLoading ? <LoadingAnimation></LoadingAnimation> : "Enviar 📤"}
