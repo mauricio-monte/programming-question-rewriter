@@ -1,10 +1,10 @@
 import QuestionSubmissionForm from "./components/QuestionSubmissionForm";
 import QuestionVariationsDisplay from "./components/QuestionVariationsDisplay";
-import useQuestionSubmit from "./hooks/useQuestionSubmit";
+import useFetchQuestionVariations from "./hooks/useFetchQuestionVariations";
 
 function App() {
   const { questionsVariations, fetchQuestionVariations, isLoading } =
-    useQuestionSubmit();
+    useFetchQuestionVariations();
 
   return (
     <div className="flex flex-col items-center min-w-full min-h-screen gap-16 pt-10">

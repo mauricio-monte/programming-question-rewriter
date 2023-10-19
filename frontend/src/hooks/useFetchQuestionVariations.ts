@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { submitQuestion } from "../components/QuestionSubmissionForm/api";
 import { QuestionSubmission } from "../components/QuestionSubmissionForm/formReducer";
 
-function useQuestionSubmit() {
+function useFetchQuestionVariations() {
   const [isLoading, setIsLoading] = useState(false);
   const [questionsVariations, setQuestionsVariations] = useState(
     [] as string[]
@@ -39,4 +39,4 @@ function useQuestionSubmit() {
   };
 }
 
-export default useQuestionSubmit;
+export default useFetchQuestionVariations;
