@@ -63,7 +63,7 @@ function QuestionSubmissionForm({
         ></textarea>
       </label>
       <button
-        className="self-end bg-[#044389] hover:bg-[#1d5695] p-3 rounded-md text-white"
+        className="self-end bg-[#044389] hover:bg-[#1d5695] p-3 rounded-md text-white h-12"
         type="submit"
         onClick={() => {
           !isLoading && onSubmit(state);
