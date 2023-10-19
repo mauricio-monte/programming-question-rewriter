@@ -1,18 +1,19 @@
-import { useCallback, useContext, useState } from "react";
-import { submitQuestion } from "./api";
-import { QuestionSubmissionForm } from "./formReducer";
-import QuestionsVariationsContext from "../../context/QuestionsVariationsContext";
+import { useCallback, useState } from "react";
+import { submitQuestion } from "../components/QuestionSubmissionForm/api";
+import { QuestionSubmission } from "../components/QuestionSubmissionForm/formReducer";
 
 function useQuestionSubmit() {
   const [isLoading, setIsLoading] = useState(false);
-  const { setQuestionsVariations } = useContext(QuestionsVariationsContext);
+  const [questionsVariations, setQuestionsVariations] = useState(
+    [] as string[]
+  );
 
   const fetchQuestionVariations = useCallback(
     async ({
       openAIKey,
       originalQuestion,
       numberOfVariations,
-    }: QuestionSubmissionForm) => {
+    }: QuestionSubmission) => {
       setIsLoading(true);
 
       try {
@@ -34,6 +35,7 @@ function useQuestionSubmit() {
   return {
     isLoading,
     fetchQuestionVariations,
+    questionsVariations,
   };
 }
 

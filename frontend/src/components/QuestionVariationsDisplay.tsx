@@ -1,9 +1,12 @@
-import { useContext, useState } from "react";
-import QuestionsVariationsContext from "../context/QuestionsVariationsContext";
+import { useState } from "react";
 
-function QuestionVariationsDisplay() {
-  const { questionsVariations } = useContext(QuestionsVariationsContext);
+interface QuestionVariationsDisplayProps {
+  questionsVariations: string[];
+}
 
+function QuestionVariationsDisplay({
+  questionsVariations,
+}: QuestionVariationsDisplayProps) {
   const [selectedQuestion, setSelectedQuestion] = useState(
     questionsVariations[0]
   );
@@ -11,7 +14,7 @@ function QuestionVariationsDisplay() {
   const thereIsAnyQuestionVariation = questionsVariations.length > 0;
 
   if (!thereIsAnyQuestionVariation) {
-    return <div></div>;
+    return null;
   }
 
   return (
@@ -27,7 +30,7 @@ function QuestionVariationsDisplay() {
                 question === selectedQuestion &&
                 "bg-[#3f83cb] border border-[#9abfe5]"
               } rounded-lg`}
-              key={i}
+              key={crypto.randomUUID()}
             >
               Variação {i + 1}
             </button>
