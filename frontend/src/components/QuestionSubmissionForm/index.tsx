@@ -43,7 +43,16 @@ function QuestionSubmissionForm({
           placeholder="1"
           name="numberOfVariations"
           value={state.numberOfVariations}
-          onChange={handleChange}
+          onChange={(e) => {
+            if (Number(e.currentTarget.value) <= 0) {
+              e.currentTarget.value = "1";
+            }
+
+            if (Number(e.currentTarget.value) > 5) {
+              e.currentTarget.value = "5";
+            }
+            handleChange(e);
+          }}
           type="number"
           min={1}
           max={5}
