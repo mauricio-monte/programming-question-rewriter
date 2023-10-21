@@ -3,6 +3,9 @@ import { INITIAL_STATE, QuestionSubmission, formReducer } from "./formReducer";
 import LoadingAnimation from "./LoadingAnimation";
 import Input from "../Input";
 
+const MIN_VARIATION_LIMIT = 1;
+const MAX_VARIATION_LIMIT = 5;
+
 interface QuestionSubmissionFormProps {
   onSubmit: (formData: QuestionSubmission) => void;
   isLoading: boolean;
@@ -43,19 +46,31 @@ function QuestionSubmissionForm({
           placeholder="1"
           name="numberOfVariations"
           value={state.numberOfVariations}
+          onKeyDown={(evt) => {
+            const exponentialAndFloatNumberCharacters = ["e", ",", ".", "-"];
+            if (exponentialAndFloatNumberCharacters.includes(evt.key)) {
+              evt.preventDefault();
+            }
+          }}
           onChange={(e) => {
-            if (Number(e.currentTarget.value) <= 0) {
-              e.currentTarget.value = "1";
+            let lastNumericTypedValue = e.target.value
+              .charAt(e.target.value.length - 1)
+              .replace(/[^0-9]/g, "");
+
+            if (Number(lastNumericTypedValue) < MIN_VARIATION_LIMIT) {
+              lastNumericTypedValue = MIN_VARIATION_LIMIT.toString();
             }
 
-            if (Number(e.currentTarget.value) > 5) {
-              e.currentTarget.value = "5";
+            if (Number(lastNumericTypedValue) > MAX_VARIATION_LIMIT) {
+              lastNumericTypedValue = MAX_VARIATION_LIMIT.toString();
             }
+
+            e.currentTarget.value = lastNumericTypedValue;
             handleChange(e);
           }}
           type="number"
-          min={1}
-          max={5}
+          min={MIN_VARIATION_LIMIT}
+          max={MAX_VARIATION_LIMIT}
         />
       </div>
 
