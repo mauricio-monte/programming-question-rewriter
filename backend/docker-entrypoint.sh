@@ -4,4 +4,8 @@ set -e
 
 . /app/.venv/bin/activate
 
-exec uvicorn app.server:app
+if [ -z "$PORT" ]; then
+  PORT=8000
+fi
+
+exec uvicorn app.server:app --port $PORT
