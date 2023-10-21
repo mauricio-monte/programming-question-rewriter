@@ -8,6 +8,7 @@ interface InputProps {
   className?: string;
   min?: number;
   max?: number;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 function Input({ className, label, ...props }: InputProps) {
