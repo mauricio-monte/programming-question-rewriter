@@ -9,6 +9,8 @@ app = FastAPI()
 
 origins = [
     "http://localhost:5173",
+    "https://programming-question-rewriter-m9lighax9.vercel.app",
+    "https://programming-question-rewriter.vercel.app",
 ]
 
 app.add_middleware(
