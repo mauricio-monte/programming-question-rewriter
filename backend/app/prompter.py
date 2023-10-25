@@ -24,21 +24,7 @@ def get_prompt(params: GenerateQuestionsParams):
         ```{params.original_text}```
 
         DO NOT add nothing more to your output, I just want the text from the new generated questions.
-        Separated by SIX equal signs in the following format, like "======":
-
-        <text from generated question 1>
-        ======
-        <text from generated question 2>
-        ======
-        ...
-        ======
-        <text from generated question N>
-
-        Example:
-        
-        This is my generated question number 1, the ideia here is...
-        ======
-        This is my generated question number 2, the ideia here is...
-
+        Output generated questions in JSON format. With only a key "generated_questions" and a list
+        with the generated questions as values.
     """
     return PROMPT
