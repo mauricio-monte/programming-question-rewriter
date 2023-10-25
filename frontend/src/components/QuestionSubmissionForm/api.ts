@@ -1,5 +1,6 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
+import { handleApiErrors } from "../../api/utils";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -12,6 +13,16 @@ export async function submitQuestion(
   originalQuestion: string,
   numberOfVariations: number
 ) {
+  if (!openAIKey) {
+    toast.error("OpenAI key is required");
+    return;
+  }
+
+  if (!originalQuestion) {
+    toast.error("Original question is required");
+    return;
+  }
+
   try {
     const variations = await API.post("/questions", {
       open_ai_key: openAIKey,
@@ -20,7 +31,7 @@ export async function submitQuestion(
     });
     return variations.data.generated_questions;
   } catch (error) {
-    console.log(error);
+    handleApiErrors(error as AxiosError);
     toast.error("Something went wrong");
   }
 }
