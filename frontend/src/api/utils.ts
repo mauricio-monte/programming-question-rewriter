@@ -14,6 +14,9 @@ export function handleApiErrors(responseError: Error | AxiosError) {
         const message = detail.msg;
         toast.error(`${field}: ${message}`);
       }
+      return;
     }
+
+    toast.error(responseError.response.data.detail);
   }
 }
