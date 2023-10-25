@@ -33,7 +33,7 @@ function QuestionSubmissionForm({
     <div className="flex flex-col gap-8 w-[600px]">
       <div className="flex gap-5">
         <Input
-          label="🔑 Chave da OpenAI"
+          label="🔑 OpenAI Key"
           placeholder="******"
           name="openAIKey"
           value={state.openAIKey}
@@ -42,7 +42,7 @@ function QuestionSubmissionForm({
         />
 
         <Input
-          label="🔢 Quantidade de variações"
+          label="🔢 Quantity of variations"
           placeholder="1"
           name="numberOfVariations"
           value={state.numberOfVariations}
@@ -75,11 +75,11 @@ function QuestionSubmissionForm({
       </div>
 
       <label className="flex flex-col gap-2">
-        👀 Enunciado da questão original
+        👀 Original Question
         <textarea
           value={state.originalQuestion}
           name="originalQuestion"
-          placeholder="Preencha aqui todo o enunciado da questão original"
+          placeholder="Write your question here..."
           onChange={handleChange}
           cols={20}
           rows={10}
@@ -93,7 +93,7 @@ function QuestionSubmissionForm({
           !isLoading && onSubmit(state);
         }}
       >
-        {isLoading ? <LoadingAnimation></LoadingAnimation> : "Enviar 📤"}
+        {isLoading ? <LoadingAnimation></LoadingAnimation> : "Send 📤"}
       </button>
     </div>
   );

@@ -1,21 +1,14 @@
-import openai
-from app.config import GENERATED_QUESTION_DELIMITER, MODEL_NAME, MODEL_TEMPERATURE
+from app.config import GENERATED_QUESTION_DELIMITER
+from app.openai_client import OpenAIClient
 from app.prompter import get_prompt
 from app.schemas import GeneratedQuestionsResponse, GenerateQuestionsParams
 
 
 def _get_model_response(params: GenerateQuestionsParams) -> str:
-    openai.api_key = params.open_ai_key
     prompt = get_prompt(params)
 
-    messages = [{"role": "user", "content": prompt}]
-    response = openai.ChatCompletion.create(
-        model=MODEL_NAME,
-        messages=messages,
-        temperature=MODEL_TEMPERATURE,
-    )
-
-    return response.choices[0].message["content"]  # type: ignore
+    client = OpenAIClient(params.open_ai_key)
+    return client.send_question(prompt)
 
 
 def _normalize_model_response(response: str) -> GeneratedQuestionsResponse:

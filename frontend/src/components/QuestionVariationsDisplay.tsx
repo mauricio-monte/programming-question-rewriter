@@ -25,7 +25,7 @@ function QuestionVariationsDisplay({
 
   return (
     <div className="flex flex-col items-center gap-8 w-[600px] pb-20">
-      <h2 className="text-center text-2xl">Versões Geradas 🥇</h2>
+      <h2 className="text-center text-2xl">Generated Questions 🥇</h2>
 
       <div className="w-full flex justify-evenly gap-3">
         {questionsVariations.map((question, i) => {
@@ -38,7 +38,7 @@ function QuestionVariationsDisplay({
               } rounded-lg`}
               key={crypto.randomUUID()}
             >
-              Variação {i + 1}
+              Option {i + 1}
             </button>
           );
         })}
