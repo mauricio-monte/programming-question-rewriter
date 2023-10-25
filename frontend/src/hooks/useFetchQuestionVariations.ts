@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { submitQuestion } from "../components/QuestionSubmissionForm/api";
 import { QuestionSubmission } from "../components/QuestionSubmissionForm/formReducer";
+import { toast } from "react-toastify";
 
 function useFetchQuestionVariations() {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,18 +17,19 @@ function useFetchQuestionVariations() {
     }: QuestionSubmission) => {
       setIsLoading(true);
 
-      try {
-        const fetchedQuestionVariations = await submitQuestion(
-          openAIKey,
-          originalQuestion,
-          numberOfVariations
-        );
-        setQuestionsVariations(fetchedQuestionVariations);
-      } catch (error) {
-        console.log(error);
-      } finally {
+      const fetchedQuestionVariations = await submitQuestion(
+        openAIKey,
+        originalQuestion,
+        numberOfVariations
+      );
+      if (fetchedQuestionVariations === undefined) {
         setIsLoading(false);
+        return;
       }
+
+      toast.success("Questions generated successfully");
+      setQuestionsVariations(fetchedQuestionVariations);
+      setIsLoading(false);
     },
     [setQuestionsVariations]
   );
