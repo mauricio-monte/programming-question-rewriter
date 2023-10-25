@@ -32,6 +32,5 @@ export async function submitQuestion(
     return variations.data.generated_questions;
   } catch (error) {
     handleApiErrors(error as AxiosError);
-    toast.error("Something went wrong");
   }
 }
