@@ -16,3 +16,6 @@ Um deploy do frontend desta aplicação pode ser acessado em:
 https://programming-question-rewriter.vercel.app/
 
 Para instruções de instalação de cada um dos componentes, veja o README nas pastas de cada componente.
+
+1. [Backend](./backend/README.md)
+2. [Frontend](./frontend/README.md)
