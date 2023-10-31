@@ -14,7 +14,6 @@ def _get_model_response(params: GenerateQuestionsParams) -> str:
 
 
 def _normalize_model_response(response: str) -> GeneratedQuestionsResponse:
-    print(response)
     try:
         responses_dict = json.loads(response)
     except json.decoder.JSONDecodeError:
