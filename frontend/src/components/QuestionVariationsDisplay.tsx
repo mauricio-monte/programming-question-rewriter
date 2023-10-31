@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useClipboard } from "../hooks/useClipboard";
 
 interface QuestionVariationsDisplayProps {
   questionsVariations: string[];
@@ -7,6 +8,8 @@ interface QuestionVariationsDisplayProps {
 function QuestionVariationsDisplay({
   questionsVariations,
 }: QuestionVariationsDisplayProps) {
+  const clipboard = useClipboard();
+
   const [selectedQuestion, setSelectedQuestion] = useState(
     questionsVariations[0]
   );
@@ -50,6 +53,12 @@ function QuestionVariationsDisplay({
           __html: selectedQuestion,
         }}
       />
+      <button
+        className="self-end bg-[#044389] hover:bg-[#1d5695] p-3 rounded-md text-white h-12"
+        onClick={() => clipboard.copyQuestion(selectedQuestion)}
+      >
+        📝 Copy
+      </button>
     </div>
   );
 }
