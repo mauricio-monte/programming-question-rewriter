@@ -1,3 +1,5 @@
+import { getOpenAIKey, saveOpenAIKey } from "../../services/storage";
+
 export interface QuestionSubmission {
   openAIKey: string;
   originalQuestion: string;
@@ -10,6 +12,10 @@ export const formReducer = (
 ) => {
   switch (action.type) {
     case "CHANGE_INPUT":
+      if (action.payload.inputName === "openAIKey") {
+        saveOpenAIKey(action.payload.value);
+      }
+
       return {
         ...state,
         [action.payload.inputName]: action.payload.value,
@@ -20,7 +26,7 @@ export const formReducer = (
 };
 
 export const INITIAL_STATE = {
-  openAIKey: "",
+  openAIKey: getOpenAIKey() || "",
   originalQuestion: "",
   numberOfVariations: 3,
 };
