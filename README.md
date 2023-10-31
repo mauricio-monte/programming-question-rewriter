@@ -9,7 +9,7 @@ modificar os enunciados das questões, mas mantendo a sua semântica para que:
 
 Esta aplicação possui dois componentes:
 
-- Backend - Recebe requisições via API Rest (contém apenas uma rota) e se comunica com a API da OpenAI para usar o ChatGPT e assim obter as variações para o enunciado da questão original
+- Backend - Recebe requisições via API Rest e se comunica com a API da OpenAI para usar o ChatGPT e assim obter as variações para o enunciado da questão original
 - Frontend - Contém a interface pela qual o usuário interage e envia requisições com os dados necessários para o backend
 
 Um deploy do frontend desta aplicação pode ser acessado em:
